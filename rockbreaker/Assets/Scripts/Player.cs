@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public Transform bulletsParent;
+    public Transform bulletShootPoint;
+    public Transform cannonBody;
 
     private float shotCooldown;
     private float currentShotTimer;
@@ -64,7 +66,11 @@ public class Player : MonoBehaviour
 
     private void ShootAt(GameObject enemy)
     {
-        GameObject shot = GameObject.Instantiate(bulletPrefab, transform.position, Quaternion.identity, bulletsParent);
+        cannonBody.transform.right = enemy.transform.position - transform.position;
+
+        GameObject shot = GameObject.Instantiate(bulletPrefab, bulletShootPoint.position, Quaternion.identity, bulletsParent);
         shot.GetComponent<Bullet>().SetTarget(enemy);
+        //var dir = enemy.transform.position - bulletShootPoint.position;
+        //cannonBody.transform.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Atan(dir.x / dir.y)));
     }
 }

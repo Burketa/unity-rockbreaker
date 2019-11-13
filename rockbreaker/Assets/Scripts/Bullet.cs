@@ -9,6 +9,8 @@ public class Bullet : MonoBehaviour
     private int dmg = 1;
     private Rigidbody2D _rgdbd;
 
+    private Vector3 targetPosition;
+
     private void Awake()
     {
         dmg = PlayerStats.dmg;
@@ -24,14 +26,11 @@ public class Bullet : MonoBehaviour
     {
         dmg = PlayerStats.dmg;
 
-        if (gameObject != null && target != null)
+        if (target != null)
         {
-            if (target == null)
-            {
-                GameObject.Destroy(gameObject);
-            }
+            targetPosition = target.transform.position;
 
-            Vector2 dir = (target.transform.position - transform.position).normalized;
+            Vector2 dir = (targetPosition - transform.position).normalized;
             _rgdbd.velocity = dir * speed;
             if (transform.position == target.transform.position)
             {
