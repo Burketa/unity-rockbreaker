@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -29,8 +27,11 @@ public class Player : MonoBehaviour
     {
         if (Utils.CheckTimer(currentShotTimer, shotCooldown))
         {
-            Shoot();
-            currentShotTimer = 0;
+            if (Utils.isEnemiesPresent())
+            {
+                Shoot();
+                currentShotTimer = 0;
+            }
         }
         else
         {
@@ -43,10 +44,9 @@ public class Player : MonoBehaviour
         int shotCount = PlayerStats.shotCount;
         int currentShotCount = 0;
 
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        if (enemies != null)
+        try
         {
-            foreach (GameObject enemy in enemies)
+            foreach (GameObject enemy in Utils.PossibleEnemies())
             {
                 if (currentShotCount < shotCount)
                 {
@@ -57,20 +57,19 @@ public class Player : MonoBehaviour
                     }
                 }
                 else
-                {
                     break;
-                }
             }
+
         }
+        catch (NullReferenceException exp) { Debug.Log("Ops, sem inimigos para atirar"); }
     }
 
     private void ShootAt(GameObject enemy)
     {
+        //Gira o corpo do canhão para o alvo
         cannonBody.transform.right = enemy.transform.position - transform.position;
 
+        //Atira, instanciando o projetil
         GameObject shot = GameObject.Instantiate(bulletPrefab, bulletShootPoint.position, Quaternion.identity, bulletsParent);
-        shot.GetComponent<Bullet>().SetTarget(enemy);
-        //var dir = enemy.transform.position - bulletShootPoint.position;
-        //cannonBody.transform.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Atan(dir.x / dir.y)));
     }
 }

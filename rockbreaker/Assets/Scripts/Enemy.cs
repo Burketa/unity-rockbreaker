@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
@@ -31,7 +29,6 @@ public class Enemy : MonoBehaviour
 
     public bool TakeDamage(int dmg)
     {
-        Debug.Log("TakeDamage");
         hp -= dmg;
         hp = Mathf.Clamp(hp, 0, 10);
         UpdateHp();

@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-
 public static class PlayerStats
 {
     public static int dmg = 1;
@@ -10,8 +5,9 @@ public static class PlayerStats
     public static int shotCount = 1;
     public static float enemySpawnRate = 1f;
     public static int enemyBaseMaxHp = 1;
-    public static float bulletSpeed = 10f;
+    public static int bulletSpeed = 10;
     public static int score = 0;
+    public static int level = 1;
 
     public static void UpDamage()
     {

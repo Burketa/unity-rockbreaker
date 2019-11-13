@@ -1950,6 +1950,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1035217049}
   m_CullTransparentMesh: 0
+--- !u!1 &1067721139
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1067721140}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1067721140
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067721139}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1202693874
 GameObject:
   m_ObjectHideFlags: 0
@@ -2059,12 +2089,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1383352503 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1383352503, guid: c367506566bd1f346bf9c9367212a392,
-    type: 3}
-  m_PrefabInstance: {fileID: 3221905986155574324}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1388876058
 GameObject:
   m_ObjectHideFlags: 0
@@ -2469,7 +2493,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 500
+  m_Text: 0
 --- !u!222 &1509421700
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3013,7 +3037,7 @@ PrefabInstance:
     - target: {fileID: 4027576407986849135, guid: c367506566bd1f346bf9c9367212a392,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 4027576407986849135, guid: c367506566bd1f346bf9c9367212a392,
         type: 3}
@@ -3065,14 +3089,13 @@ PrefabInstance:
       propertyPath: bulletsParent
       value: 
       objectReference: {fileID: 1942912949}
-    - target: {fileID: 4676966108984924809, guid: c367506566bd1f346bf9c9367212a392,
-        type: 3}
-      propertyPath: cannonBody
-      value: 
-      objectReference: {fileID: 1383352503}
-    - target: {fileID: 1383352502, guid: c367506566bd1f346bf9c9367212a392, type: 3}
-      propertyPath: m_Name
-      value: body
+    - target: {fileID: 1137977516, guid: c367506566bd1f346bf9c9367212a392, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.168
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137977516, guid: c367506566bd1f346bf9c9367212a392, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c367506566bd1f346bf9c9367212a392, type: 3}

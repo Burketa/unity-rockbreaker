@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 1383352503}
   - component: {fileID: 1383352504}
   m_Layer: 0
-  m_Name: cannon
+  m_Name: body
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1383352502}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.001, y: -2.829, z: -0.041015625}
+  m_LocalPosition: {x: -0, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1137977516}
@@ -135,7 +135,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3221905987875456391}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -3, z: -0.041015625}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4027576407986849135}
@@ -238,4 +238,4 @@ MonoBehaviour:
     type: 3}
   bulletsParent: {fileID: 0}
   bulletShootPoint: {fileID: 1137977516}
-  cannonBody: {fileID: 0}
+  cannonBody: {fileID: 1383352503}
