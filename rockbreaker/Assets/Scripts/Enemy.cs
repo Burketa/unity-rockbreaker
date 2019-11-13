@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
         if (!isAlive && gameObject != null)
         {
             PlayerStats.AddScore(maxHp);
-            UI.UpdateScore();
+            PlayerStats.EnemyKill();
             Destroy(gameObject);
         }
     }

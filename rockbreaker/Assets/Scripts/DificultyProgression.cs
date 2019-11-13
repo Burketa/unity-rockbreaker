@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class DificultyProgression : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static void LevelUp()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        PlayerStats.level++;
+        PlayerStats.upgrades++;
+        if (UnityEngine.Random.value > 0.5f)
+            PlayerStats.UpEnemyBaseMaxHp();
+        else
+            PlayerStats.UpEnemySpawnRate();
     }
 }

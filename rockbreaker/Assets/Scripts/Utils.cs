@@ -34,11 +34,15 @@ public class Utils : MonoBehaviour
         }
     }
 
-    public static void LevelUp(float value)
+    public static void CheckHighscore(int score)
     {
-        if (value > 0.5f)
-            PlayerStats.UpEnemyBaseMaxHp();
-        else
-            PlayerStats.UpEnemySpawnRate();
+        int highscore = PlayerPrefs.GetInt("highscore", 0);
+
+        if (score > highscore)
+        {
+            int newHighscore = score;
+            PlayerPrefs.SetInt("highscore", newHighscore);
+            PlayerPrefs.Save();
+        }
     }
 }
