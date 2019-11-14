@@ -5,10 +5,24 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
+    //Highscore
+    public Text highscore;
+
+    //Upgrades
+    public Text dmg;
+    public Text speed;
+    public Text shotCount;
+
+    //Stats
+    public Button upgradesButton;
+    public Text upgradesText;
     public Text level;
     public Text levelKills;
     public Text totalKills;
     public Text score;
+
+    //Buttons
+    public Transform buttonsTransform;
 
     public void Awake()
     {
@@ -33,14 +47,6 @@ public class UI : MonoBehaviour
     {
         PlayerStats.UpShotCount();
     }
-    public void UpEnemySpawnRate()
-    {
-        PlayerStats.UpEnemySpawnRate();
-    }
-    public void UpEnemyBaseMaxHp()
-    {
-        PlayerStats.UpEnemyBaseMaxHp();
-    }
 
     public void UpdateAll()
     {
@@ -54,53 +60,51 @@ public class UI : MonoBehaviour
         UpdateScore();
         UpdateHighscore();
     }
-    public static void UpdateDamage()
+    public void UpdateDamage()
     {
-        GameObject.Find("button-dmg").transform.GetChild(0).GetComponent<Text>().text = PlayerStats.dmg.ToString();
+        dmg.text = PlayerStats.dmg.ToString();
     }
-    public static void UpdateSpeed()
+    public void UpdateSpeed()
     {
-        GameObject.Find("button-firerate").transform.GetChild(0).GetComponent<Text>().text = $"{PlayerStats.fireRate.ToString("0.00")}s";
+        speed.text = $"{PlayerStats.fireRate.ToString("0.00")}s";
     }
-    public static void UpdateShootCount()
+    public void UpdateShootCount()
     {
-        GameObject.Find("button-shots").transform.GetChild(0).GetComponent<Text>().text = PlayerStats.shotCount.ToString();
+        shotCount.text = PlayerStats.shotCount.ToString();
     }
-    public static void UpdateUpgrades()
+    public void UpdateUpgrades()
     {
-        GameObject.Find("upgrades").transform.GetChild(1).GetComponent<Text>().text = PlayerStats.upgrades.ToString();
+        upgradesText.text = PlayerStats.upgrades.ToString();
     }
-    public static void UpdateLevel()
+    public void UpdateLevel()
     {
-        GameObject.Find("level").transform.GetChild(1).GetComponent<Text>().text = PlayerStats.level.ToString();
-    }
-
-    public static void UpdateLevelKills()
-    {
-        GameObject.Find("level-kills").transform.GetChild(1).GetComponent<Text>().text = PlayerStats.levelKills.ToString();
+        level.text = PlayerStats.level.ToString();
     }
 
-    public static void UpdateTotalKills()
+    public void UpdateLevelKills()
     {
-        GameObject.Find("kills-total").transform.GetChild(1).GetComponent<Text>().text = PlayerStats.totalKills.ToString();
+        levelKills.text = PlayerStats.levelKills.ToString();
     }
 
-    public static void UpdateScore()
+    public void UpdateTotalKills()
     {
-        GameObject.Find("score").transform.GetChild(1).GetComponent<Text>().text = PlayerStats.score.ToString();
-        //score.text = PlayerStats.score.ToString();
+        totalKills.text = PlayerStats.totalKills.ToString();
     }
-    public static void UpdateHighscore()
+
+    public void UpdateScore()
     {
-        GameObject.Find("highscore").GetComponent<Text>().text = PlayerPrefs.GetInt("highscore", 0).ToString();
-        //score.text = PlayerStats.score.ToString();
+        score.text = PlayerStats.score.ToString();
+    }
+    public void UpdateHighscore()
+    {
+        highscore.text = PlayerPrefs.GetInt("highscore", 0).ToString();
     }
 
     public void UnlockButtons(bool state)
     {
-        GameObject.Find("upgrades").GetComponent<Button>().interactable = state;
+        upgradesButton.GetComponent<Button>().interactable = state;
 
-        Button[] buttons = GameObject.Find("buttons").GetComponentsInChildren<Button>();
+        Button[] buttons = buttonsTransform.GetComponentsInChildren<Button>();
         foreach (Button button in buttons)
         {
             button.interactable = state;
