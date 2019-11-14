@@ -13,7 +13,7 @@ public class Utils : MonoBehaviour
             {
                 try
                 {
-                    child.GetComponent<Bullet>().SelfDestroy();
+                    child.GetComponent<Projectile>().SelfDestroy();
                 }
                 catch (Exception exp) { }
             }

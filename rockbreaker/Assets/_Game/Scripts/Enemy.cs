@@ -5,7 +5,7 @@ public class Enemy : MonoBehaviour
 {
     private int maxHp;
     private int hp;
-    private bool isDead = false;
+    public bool isDead = false;
 
     void Awake()
     {

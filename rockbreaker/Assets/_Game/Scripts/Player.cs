@@ -53,26 +53,18 @@ public class Player : MonoBehaviour
 
     private void Shoot()
     {
-        int shotCount = PlayerStats.shotCount;
-        int currentShotCount = 0;
-
         try
         {
             foreach (GameObject enemy in Utils.PossibleEnemies())
             {
-                if (currentShotCount < shotCount)
+                if (enemy.transform.position.y > transform.position.y)
                 {
-                    if (enemy.transform.position.y > transform.position.y)
-                    {
-                        AimAt(enemy);
-                        //DoShoot();
-                        currentShotCount++;
-                    }
-                }
-                else
+                    AimAt(enemy);
+                    for (int shots = 1; shots <= PlayerStats.shotCount; shots++)
+                        DoShoot(shots);
                     break;
+                }
             }
-
         }
         catch (NullReferenceException exp) { Debug.Log("Ops, sem inimigos para atirar"); }
     }
@@ -85,7 +77,7 @@ public class Player : MonoBehaviour
         GetComponent<Animation>().Play("player-shoot");
     }
 
-    public void DoShoot()
+    private void DoShoot(int shots)
     {
         //Atira, instanciando o projetil
         GameObject shot = GameObject.Instantiate(bulletPrefab, bulletShootPoint.position, Quaternion.identity, bulletsParent);

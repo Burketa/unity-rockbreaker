@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
     public bool destroyBulletsAfterKillingEnemy = false;
     private float speed = 1.0f;
@@ -15,8 +15,6 @@ public class Bullet : MonoBehaviour
         speed = PlayerStats.bulletSpeed;
 
         player = GameObject.FindWithTag("Player").transform;
-
-        GameObject.Destroy(gameObject, 2.0f);
     }
 
     void Update()
@@ -58,9 +56,12 @@ public class Bullet : MonoBehaviour
             particles.transform.position = transform.position;
             particles.Play();
 
-            col.GetComponent<Enemy>().TakeDamage(dmg);
-
-            Destroy(gameObject);
+            Enemy enemy = col.GetComponent<Enemy>();
+            if (!enemy.isDead)
+            {
+                enemy.TakeDamage(dmg);
+                Destroy(gameObject);
+            }
         }
     }
 

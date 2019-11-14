@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class PlayerStats
 {
     public static int dmg = 1;
@@ -11,7 +13,8 @@ public class PlayerStats
     public static int levelKills = 0;
     public static int score = 0;
     public static int upgrades = 1;
-
+    /*
+    */
     public static void Reset()
     {
         dmg = 1;
@@ -26,7 +29,8 @@ public class PlayerStats
         score = 0;
         upgrades = 1;
     }
-    /*public static void Reset()
+    /* 
+    public static void Reset()
     {
         dmg = 5;
         fireRate = 0.2f;
@@ -39,7 +43,8 @@ public class PlayerStats
         levelKills = 0;
         score = 0;
         upgrades = 1;
-    }*/
+    }
+    */
 
     public static void UpDamage()
     {
@@ -75,9 +80,9 @@ public class PlayerStats
     public static void EnemyKill()
     {
         totalKills++;
-        if (DificultyProgression.CheckLevelUp(level, levelKills))
+        if (DifficultyProgression.CheckLevelUp(level, levelKills))
         {
-            DificultyProgression.LevelUp();
+            DifficultyProgression.LevelUp();
             levelKills = 0;
         }
         else { levelKills++; }
@@ -85,12 +90,22 @@ public class PlayerStats
 
     public static void LevelUp()
     {
+        float randomValue = Random.value;
+
         level++;
-        upgrades = UnityEngine.Random.value <= 0.2f ? upgrades + 1 : upgrades + 2;
-        bulletSpeed = UnityEngine.Mathf.Min(PlayerStats.bulletSpeed, 20);
-        if (UnityEngine.Random.value > 0.5f)
-            UpEnemyBaseMaxHp();
+        upgrades = randomValue <= 0.05f ? upgrades + 2 : upgrades + 1;
+        bulletSpeed++;
+        bulletSpeed = Mathf.Min(PlayerStats.bulletSpeed, 20);
+
+        if (randomValue > 0.5f)
+            PlayerStats.UpEnemyBaseMaxHp();
         else
-            UpEnemySpawnRate();
+            PlayerStats.UpEnemySpawnRate();
+
+        if (randomValue >= 0.95f)
+        {
+            PlayerStats.UpEnemyBaseMaxHp();
+            PlayerStats.UpEnemySpawnRate();
+        }
     }
 }
