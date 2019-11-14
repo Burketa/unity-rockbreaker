@@ -60,7 +60,7 @@ public class UI : MonoBehaviour
     }
     public static void UpdateSpeed()
     {
-        GameObject.Find("button-firerate").transform.GetChild(0).GetComponent<Text>().text = PlayerStats.fireRate.ToString();
+        GameObject.Find("button-firerate").transform.GetChild(0).GetComponent<Text>().text = $"{PlayerStats.fireRate.ToString("0.00")}s";
     }
     public static void UpdateShootCount()
     {
