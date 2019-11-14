@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player player;
     public GameObject bulletPrefab;
     public Transform bulletsParent;
     public Transform bulletShootPoint;
@@ -11,16 +12,27 @@ public class Player : MonoBehaviour
     private float shotCooldown;
     private float currentShotTimer;
 
+    private bool isDead = false;
+
     private void Awake()
     {
         shotCooldown = PlayerStats.fireRate;
         currentShotTimer = shotCooldown;
+        player = this;
+        PlayerStats.Reset();
     }
 
     void Update()
     {
-        shotCooldown = PlayerStats.fireRate;
-        CheckIfCanShoot();
+        if (isDead)
+        {
+            Utils.RestartLevel();
+        }
+        else
+        {
+            shotCooldown = PlayerStats.fireRate;
+            CheckIfCanShoot();
+        }
     }
 
     private void CheckIfCanShoot()
@@ -71,5 +83,12 @@ public class Player : MonoBehaviour
 
         //Atira, instanciando o projetil
         GameObject shot = GameObject.Instantiate(bulletPrefab, bulletShootPoint.position, Quaternion.identity, bulletsParent);
+    }
+
+    public void TakeDamage(int dmg)
+    {
+        //TODO: Shake Camera
+        PlayerStats.score -= dmg;
+        isDead = PlayerStats.score < 0;
     }
 }

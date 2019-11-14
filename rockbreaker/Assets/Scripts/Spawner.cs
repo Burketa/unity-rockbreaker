@@ -5,7 +5,6 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
-    public Transform enemyParent;
     private float spawnCooldown;
     private float currentSpawnTimer;
 

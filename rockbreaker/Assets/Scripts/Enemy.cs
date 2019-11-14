@@ -5,7 +5,7 @@ public class Enemy : MonoBehaviour
 {
     private int maxHp;
     private int hp;
-    private bool isAlive = true;
+    private bool isDead = false;
 
     void Awake()
     {
@@ -19,30 +19,45 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if (!isAlive && gameObject != null)
+        if (isDead)
         {
             PlayerStats.AddScore(maxHp);
             PlayerStats.EnemyKill();
-            Destroy(gameObject);
+            SelfDestroy();
+        }
+        else
+        {
+            if (transform.position.y <= Player.player.transform.position.y)
+            {
+                Player.player.TakeDamage(hp);
+                SelfDestroy();
+                //Efeito de Camera shake ?
+                //Particulas ?
+            }
         }
     }
 
     public bool TakeDamage(int dmg)
     {
         hp -= dmg;
-        hp = Mathf.Clamp(hp, 0, 10);
+        hp = Mathf.Clamp(hp, 0, PlayerStats.enemyBaseMaxHp);
         UpdateHp();
 
         if (hp == 0)
         {
-            isAlive = false;
+            isDead = true;
         }
 
-        return isAlive;
+        return isDead;
     }
 
     public void UpdateHp()
     {
         GetComponentInChildren<Text>().text = hp.ToString();
+    }
+
+    private void SelfDestroy()
+    {
+        Destroy(gameObject);
     }
 }

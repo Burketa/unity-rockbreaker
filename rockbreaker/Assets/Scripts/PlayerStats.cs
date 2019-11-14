@@ -12,6 +12,35 @@ public class PlayerStats
     public static int score = 0;
     public static int upgrades = 1;
 
+    public static void Reset()
+    {
+        dmg = 1;
+        fireRate = 1f;
+        shotCount = 1;
+        enemySpawnRate = 1f;
+        enemyBaseMaxHp = 1;
+        bulletSpeed = 10;
+        level = 1;
+        totalKills = 0;
+        levelKills = 0;
+        score = 0;
+        upgrades = 1;
+    }
+    /*public static void Reset()
+    {
+        dmg = 5;
+        fireRate = 0.2f;
+        shotCount = 5;
+        enemySpawnRate = 0.1f;
+        enemyBaseMaxHp = 8;
+        bulletSpeed = 20;
+        level = 1;
+        totalKills = 0;
+        levelKills = 0;
+        score = 0;
+        upgrades = 1;
+    }*/
+
     public static void UpDamage()
     {
         dmg++;
@@ -46,11 +75,22 @@ public class PlayerStats
     public static void EnemyKill()
     {
         totalKills++;
-        if (levelKills >= level * 10)
+        if (DificultyProgression.CheckLevelUp(level, levelKills))
         {
             DificultyProgression.LevelUp();
             levelKills = 0;
         }
         else { levelKills++; }
+    }
+
+    public static void LevelUp()
+    {
+        level++;
+        upgrades = UnityEngine.Random.value <= 0.2f ? upgrades + 1 : upgrades + 2;
+        bulletSpeed = UnityEngine.Mathf.Min(PlayerStats.bulletSpeed, 20);
+        if (UnityEngine.Random.value > 0.5f)
+            UpEnemyBaseMaxHp();
+        else
+            UpEnemySpawnRate();
     }
 }

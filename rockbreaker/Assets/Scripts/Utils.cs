@@ -1,8 +1,34 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Utils : MonoBehaviour
 {
+    public Transform bulletsParent;
+    private void Update()
+    {
+        if (bulletsParent.childCount >= PlayerStats.shotCount * 5)
+        {
+            foreach (Transform child in bulletsParent)
+            {
+                try
+                {
+                    child.GetComponent<Bullet>().SelfDestroy();
+                }
+                catch (Exception exp) { }
+            }
+
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            enemies[0].GetComponent<Enemy>().TakeDamage(PlayerStats.dmg);
+            foreach (GameObject enemy in enemies)
+            {
+                enemy.GetComponent<Enemy>().TakeDamage(PlayerStats.dmg / 2);
+            }
+
+            GameObject.Find("big-particles").GetComponent<ParticleSystem>().Play();
+        }
+    }
+
     public static bool CheckTimer(float current, float cooldown)
     {
         return current >= cooldown;
@@ -44,5 +70,11 @@ public class Utils : MonoBehaviour
             PlayerPrefs.SetInt("highscore", newHighscore);
             PlayerPrefs.Save();
         }
+    }
+
+    public static void RestartLevel()
+    {
+        PlayerStats.Reset();
+        SceneManager.LoadScene(0);
     }
 }

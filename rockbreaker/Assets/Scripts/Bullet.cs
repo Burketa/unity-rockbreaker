@@ -54,8 +54,18 @@ public class Bullet : MonoBehaviour
     {
         if (col.tag.Equals("Enemy"))
         {
-            Destroy(gameObject);
+            ParticleSystem particles = GameObject.Find("projetctile-particles").GetComponent<ParticleSystem>();
+            particles.transform.position = transform.position;
+            particles.Play();
+
             col.GetComponent<Enemy>().TakeDamage(dmg);
+
+            Destroy(gameObject);
         }
+    }
+
+    public void SelfDestroy()
+    {
+        Destroy(gameObject);
     }
 }
