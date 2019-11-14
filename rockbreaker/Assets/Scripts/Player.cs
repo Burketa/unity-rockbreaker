@@ -64,7 +64,8 @@ public class Player : MonoBehaviour
                 {
                     if (enemy.transform.position.y > transform.position.y)
                     {
-                        ShootAt(enemy);
+                        AimAt(enemy);
+                        //DoShoot();
                         currentShotCount++;
                     }
                 }
@@ -76,11 +77,16 @@ public class Player : MonoBehaviour
         catch (NullReferenceException exp) { Debug.Log("Ops, sem inimigos para atirar"); }
     }
 
-    private void ShootAt(GameObject enemy)
+    private void AimAt(GameObject enemy)
     {
         //Gira o corpo do canhão para o alvo
         cannonBody.transform.right = enemy.transform.position - transform.position;
 
+        GetComponent<Animation>().Play("player-shoot");
+    }
+
+    public void DoShoot()
+    {
         //Atira, instanciando o projetil
         GameObject shot = GameObject.Instantiate(bulletPrefab, bulletShootPoint.position, Quaternion.identity, bulletsParent);
     }
