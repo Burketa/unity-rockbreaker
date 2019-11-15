@@ -8,13 +8,15 @@ public class Projectile : MonoBehaviour
     private int dmg = 1;
     private Vector3 targetPosition;
     private Transform player;
+    private ParticleSystem particles;
 
     private void Awake()
     {
+        player = GameObject.FindWithTag("Player").transform;
+        particles = GameObject.Find("projetctile-particles").GetComponent<ParticleSystem>();
+
         dmg = PlayerStats.dmg;
         speed = PlayerStats.bulletSpeed;
-
-        player = GameObject.FindWithTag("Player").transform;
     }
 
     void Update()
@@ -52,12 +54,11 @@ public class Projectile : MonoBehaviour
     {
         if (col.tag.Equals("Enemy"))
         {
-            ParticleSystem particles = GameObject.Find("projetctile-particles").GetComponent<ParticleSystem>();
             particles.transform.position = transform.position;
             particles.Play();
 
             Enemy enemy = col.GetComponent<Enemy>();
-            if (!enemy.isDead)
+            if (!enemy.isEnemyDead())
             {
                 enemy.TakeDamage(dmg);
                 Destroy(gameObject);

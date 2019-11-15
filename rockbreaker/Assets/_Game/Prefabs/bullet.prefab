@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7386085731133836574}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.06, y: -3.1, z: -0.041015625}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aa0b4f38af66a448a64fb74b974584a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyBulletsAfterKillingEnemy: 0
+  destroyBulletsAfterKillingEnemy: 1
 --- !u!58 &1058398819746962850
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -129,7 +129,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -149,7 +149,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Time: 0.2
+  m_Time: 0.1
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -158,7 +158,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.28813553
+        value: 0.17845535
         inSlope: 0
         outSlope: 0
         tangentMode: 0

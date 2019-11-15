@@ -20,7 +20,7 @@ public class Spawner : MonoBehaviour
 
     private void CheckIfCanSpawn()
     {
-        if (Utils.CheckTimer(currentSpawnTimer, spawnCooldown))
+        if (Utils.CheckTimer(currentSpawnTimer, spawnCooldown) || !Utils.isEnemiesPresent())
         {
             Spawn();
             currentSpawnTimer = 0;

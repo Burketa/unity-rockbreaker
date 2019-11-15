@@ -3,18 +3,26 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
+    private bool isDead = false;
     private int maxHp;
     private int hp;
-    public bool isDead = false;
+
+    private Rigidbody2D _rgdbd;
 
     void Awake()
     {
+        _rgdbd = GetComponent<Rigidbody2D>();
+
         maxHp = PlayerStats.enemyBaseMaxHp;
         hp = maxHp;
 
         UpdateHp();
+    }
 
-        Destroy(gameObject, 3.0f);
+    private void FixedUpdate()
+    {
+        //Limitar a velocidade
+        LimitVelocity();
     }
 
     void Update()
@@ -31,8 +39,6 @@ public class Enemy : MonoBehaviour
             {
                 Player.player.TakeDamage(hp);
                 SelfDestroy();
-                //Efeito de Camera shake ?
-                //Particulas ?
             }
         }
     }
@@ -59,5 +65,18 @@ public class Enemy : MonoBehaviour
     private void SelfDestroy()
     {
         Destroy(gameObject);
+    }
+
+    public bool isEnemyDead()
+    {
+        return isDead;
+    }
+
+    private void LimitVelocity()
+    {
+        Vector2 vel = _rgdbd.velocity;
+        vel.x = 0;
+        vel.y = Mathf.Max(vel.y, -3.0f);
+        _rgdbd.velocity = vel;
     }
 }

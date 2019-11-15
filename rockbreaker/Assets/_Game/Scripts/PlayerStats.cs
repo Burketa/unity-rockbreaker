@@ -63,12 +63,12 @@ public class PlayerStats
     }
     public static void UpEnemySpawnRate()
     {
-        enemySpawnRate *= 0.9f;
+        enemySpawnRate = Random.value <= 0.25f ? enemySpawnRate * 0.8f : enemySpawnRate * 0.9f;
     }
 
     public static void UpEnemyBaseMaxHp()
     {
-        enemyBaseMaxHp++;
+        enemyBaseMaxHp = Random.value <= 0.25f ? enemyBaseMaxHp + 3 : enemyBaseMaxHp + 1;
     }
 
     public static void AddScore(int val)
@@ -90,22 +90,22 @@ public class PlayerStats
 
     public static void LevelUp()
     {
-        float randomValue = Random.value;
-
         level++;
-        upgrades = randomValue <= 0.05f ? upgrades + 2 : upgrades + 1;
-        bulletSpeed++;
+        upgrades++; //= randomValue <= 0.05f ? upgrades + 2 : upgrades + 1;
+        bulletSpeed++;// = Random.value <= 0.05f ? bulletSpeed + 1 : bulletSpeed;
         bulletSpeed = Mathf.Min(PlayerStats.bulletSpeed, 20);
 
-        if (randomValue > 0.5f)
-            PlayerStats.UpEnemyBaseMaxHp();
-        else
-            PlayerStats.UpEnemySpawnRate();
-
-        if (randomValue >= 0.95f)
+        if (Random.value < 0.5f)
         {
-            PlayerStats.UpEnemyBaseMaxHp();
-            PlayerStats.UpEnemySpawnRate();
+            UpEnemyBaseMaxHp();
+            if (Random.value <= 0.25f)
+                UpEnemyBaseMaxHp();
+        }
+        else
+        {
+            UpEnemySpawnRate();
+            if (Random.value <= 0.25f)
+                UpEnemySpawnRate();
         }
     }
 }
