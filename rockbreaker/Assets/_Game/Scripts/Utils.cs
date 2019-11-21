@@ -8,7 +8,7 @@ public class Utils : MonoBehaviour
 
     private void Update()
     {
-        if (bulletsParent.childCount >= PlayerStats.shotCount * 5)
+        if (bulletsParent.childCount >= PlayerStats.shotCount * 10)
             Explode();
     }
 

@@ -98,13 +98,13 @@ public class PlayerStats
         if (Random.value < 0.5f)
         {
             UpEnemyBaseMaxHp();
-            if (Random.value <= 0.25f)
+            if (Random.value < 0.6f)
                 UpEnemyBaseMaxHp();
         }
         else
         {
             UpEnemySpawnRate();
-            if (Random.value <= 0.25f)
+            if (Random.value < 0.3f)
                 UpEnemySpawnRate();
         }
     }

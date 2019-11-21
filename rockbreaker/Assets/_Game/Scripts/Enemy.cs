@@ -8,9 +8,11 @@ public class Enemy : MonoBehaviour
     private int hp;
 
     private Rigidbody2D _rgdbd;
+    private Transform _egg;
 
     void Awake()
     {
+        _egg = GameObject.FindWithTag("Egg").transform;
         _rgdbd = GetComponent<Rigidbody2D>();
 
         maxHp = PlayerStats.enemyBaseMaxHp;
@@ -35,9 +37,9 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            if (transform.position.y <= Player.player.transform.position.y)
+            if (transform.position.y <= _egg.position.y)
             {
-                Player.player.TakeDamage(hp);
+                Cannon.player.TakeDamage(hp);
                 SelfDestroy();
             }
         }

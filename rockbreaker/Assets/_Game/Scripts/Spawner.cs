@@ -33,6 +33,6 @@ public class Spawner : MonoBehaviour
 
     private void Spawn()
     {
-        GameObject enemy = Instantiate(enemyPrefab, new Vector2(Random.Range(-2.5f, 2.5f), 5), Quaternion.identity, transform);
+        GameObject enemy = Instantiate(enemyPrefab, new Vector2(Random.Range(-1.4f, 1.4f), 5), Quaternion.identity, transform);
     }
 }

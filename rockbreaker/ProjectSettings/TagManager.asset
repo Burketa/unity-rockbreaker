@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Score
+  - Egg
   layers:
   - Default
   - TransparentFX

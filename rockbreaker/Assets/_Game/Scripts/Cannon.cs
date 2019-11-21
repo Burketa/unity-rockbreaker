@@ -2,9 +2,9 @@
 using UnityEngine;
 using EZCameraShake;
 
-public class Player : MonoBehaviour
+public class Cannon : MonoBehaviour
 {
-    public static Player player;
+    public static Cannon player;
     public GameObject bulletPrefab;
     public Transform bulletsParent;
     public Transform bulletShootPoint;
@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     {
         player = this;
 
-        _animation = GetComponent<Animation>();
+        _animation = GetComponentInChildren<Animation>();
 
         PlayerStats.Reset();
 
@@ -94,12 +94,16 @@ public class Player : MonoBehaviour
     private void AimAt(GameObject enemy)
     {
         //Gira o corpo do canhão para o alvo
-        cannonBody.transform.right = enemy.transform.position - transform.position;
+        if (transform.localScale.y < 0)
+
+            cannonBody.transform.up = -1 * (enemy.transform.position - transform.position);
+        else
+            cannonBody.transform.up = enemy.transform.position - transform.position;
     }
 
     private void DoShoot(int shots)
     {
-        _animation.Play("player-shoot");
+        _animation.Play("player-shoot-plant");
 
         //Atira, instanciando o projetil
         GameObject shot = GameObject.Instantiate(bulletPrefab, bulletShootPoint.position, Quaternion.identity, bulletsParent);

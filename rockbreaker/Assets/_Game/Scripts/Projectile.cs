@@ -23,6 +23,7 @@ public class Projectile : MonoBehaviour
     {
         dmg = PlayerStats.dmg;
         FollowTarget();
+        transform.GetChild(0).transform.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, -transform.rotation.z);
     }
 
     private void FollowTarget()
