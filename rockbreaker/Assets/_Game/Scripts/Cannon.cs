@@ -4,7 +4,6 @@ using EZCameraShake;
 
 public class Cannon : MonoBehaviour
 {
-    public static Cannon player;
     public GameObject bulletPrefab;
     public Transform bulletsParent;
     public Transform bulletShootPoint;
@@ -12,15 +11,10 @@ public class Cannon : MonoBehaviour
 
     private float shotCooldown;
     private float currentShotTimer;
-
-    private bool isDead = false;
-
     private Animation _animation;
 
     private void Awake()
     {
-        player = this;
-
         _animation = GetComponentInChildren<Animation>();
 
         PlayerStats.Reset();
@@ -31,17 +25,9 @@ public class Cannon : MonoBehaviour
 
     void Update()
     {
-        //Todo: Tirar o isDead daqui e colocar em um Player ?
-        if (isDead)
-        {
-            Utils.RestartLevel();
-        }
-        else
-        {
-            shotCooldown = PlayerStats.fireRate;
-            Aim();
-            CheckIfCanShoot();
-        }
+        shotCooldown = PlayerStats.fireRate;
+        Aim();
+        CheckIfCanShoot();
     }
 
     private void Aim()
@@ -104,15 +90,7 @@ public class Cannon : MonoBehaviour
     {
         _animation.Play("player-shoot-plant");
 
-        //Atira, instanciando o projetil
         GameObject shot = GameObject.Instantiate(bulletPrefab, bulletShootPoint.position, Quaternion.identity, bulletsParent);
-    }
-
-    public void TakeDamage(int dmg)
-    {
-        CameraShaker.Instance.ShakeOnce(5.0f, 1f, 0.3f, 0.3f);
-        PlayerStats.score -= dmg;
-        isDead = PlayerStats.score < 0;
     }
 
     private bool isValidEnemy(GameObject enemy)

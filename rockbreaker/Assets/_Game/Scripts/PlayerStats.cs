@@ -63,12 +63,12 @@ public class PlayerStats
     }
     public static void UpEnemySpawnRate()
     {
-        enemySpawnRate = Random.value <= 0.25f ? enemySpawnRate * 0.8f : enemySpawnRate * 0.9f;
+        enemySpawnRate = Random.value <= 0.2f ? enemySpawnRate * 0.8f : enemySpawnRate * 0.88f;
     }
 
     public static void UpEnemyBaseMaxHp()
     {
-        enemyBaseMaxHp = Random.value <= 0.25f ? enemyBaseMaxHp + 3 : enemyBaseMaxHp + 1;
+        enemyBaseMaxHp = Random.value <= 0.2f ? enemyBaseMaxHp + 4 : enemyBaseMaxHp + 2;
     }
 
     public static void AddScore(int val)
@@ -98,13 +98,13 @@ public class PlayerStats
         if (Random.value < 0.5f)
         {
             UpEnemyBaseMaxHp();
-            if (Random.value < 0.6f)
+            if (Random.value < 0.5f)
                 UpEnemyBaseMaxHp();
         }
         else
         {
             UpEnemySpawnRate();
-            if (Random.value < 0.3f)
+            if (Random.value < 0.4f)
                 UpEnemySpawnRate();
         }
     }
