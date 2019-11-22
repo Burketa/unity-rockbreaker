@@ -3,8 +3,8 @@ using UnityEngine;
 public class PlayerStats
 {
     public static int dmg = 1;
+    public static int charges = 1;
     public static float fireRate = 1f;
-    public static int shotCount = 1;
     public static float enemySpawnRate = 1f;
     public static int enemyBaseMaxHp = 1;
     public static int bulletSpeed = 10;
@@ -18,8 +18,8 @@ public class PlayerStats
     public static void Reset()
     {
         dmg = 1;
+        charges = 1;
         fireRate = 1f;
-        shotCount = 1;
         enemySpawnRate = 1f;
         enemyBaseMaxHp = 1;
         bulletSpeed = 10;
@@ -34,7 +34,7 @@ public class PlayerStats
     {
         dmg = 5;
         fireRate = 0.2f;
-        shotCount = 5;
+        charges = 5;
         enemySpawnRate = 0.1f;
         enemyBaseMaxHp = 8;
         bulletSpeed = 20;
@@ -56,9 +56,9 @@ public class PlayerStats
         fireRate *= 0.9f;
         upgrades--;
     }
-    public static void UpShotCount()
+    public static void UpCharges()
     {
-        shotCount++;
+        charges++;
         upgrades--;
     }
     public static void UpEnemySpawnRate()

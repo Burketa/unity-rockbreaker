@@ -8,8 +8,9 @@ public class Utils : MonoBehaviour
 
     private void Update()
     {
-        if (bulletsParent.childCount >= PlayerStats.shotCount * 10)
-            Explode();
+        //TODO:Melhorar esse explode
+        //if (bulletsParent.childCount >= PlayerStats.charges * 10)
+        //Explode();
     }
 
     public static bool CheckTimer(float current, float cooldown)

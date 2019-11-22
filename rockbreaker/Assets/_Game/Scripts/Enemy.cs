@@ -59,6 +59,11 @@ public class Enemy : MonoBehaviour
         return isDead;
     }
 
+    public void Die()
+    {
+        isDead = true;
+    }
+
     public void UpdateHp()
     {
         GetComponentInChildren<Text>().text = hp.ToString();
@@ -72,6 +77,11 @@ public class Enemy : MonoBehaviour
     public bool isEnemyDead()
     {
         return isDead;
+    }
+
+    public int getEnemyHp()
+    {
+        return hp;
     }
 
     private void LimitVelocity()

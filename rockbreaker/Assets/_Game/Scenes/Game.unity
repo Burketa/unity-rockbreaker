@@ -4972,6 +4972,7 @@ GameObject:
   - component: {fileID: 55477254}
   - component: {fileID: 55477256}
   - component: {fileID: 55477255}
+  - component: {fileID: 55477257}
   m_Layer: 5
   m_Name: highscore
   m_TagString: Untagged
@@ -5011,7 +5012,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.9529412, g: 0.48235294, b: 0.20392157, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -5038,6 +5039,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 55477253}
   m_CullTransparentMesh: 0
+--- !u!114 &55477257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55477253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 8, y: -8}
+  m_UseGraphicAlpha: 1
 --- !u!1 &127540258
 GameObject:
   m_ObjectHideFlags: 0
@@ -5350,6 +5366,7 @@ GameObject:
   - component: {fileID: 206478437}
   - component: {fileID: 206478439}
   - component: {fileID: 206478438}
+  - component: {fileID: 206478440}
   m_Layer: 5
   m_Name: version
   m_TagString: Untagged
@@ -5407,7 +5424,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: v8
+  m_Text: v9
 --- !u!222 &206478439
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5416,6 +5433,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 206478436}
   m_CullTransparentMesh: 0
+--- !u!114 &206478440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206478436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 2, y: 2}
+  m_UseGraphicAlpha: 1
 --- !u!1 &242194695
 GameObject:
   m_ObjectHideFlags: 0
@@ -5571,7 +5603,7 @@ MonoBehaviour:
   highscore: {fileID: 55477255}
   dmg: {fileID: 1833181076}
   speed: {fileID: 1452217329}
-  shotCount: {fileID: 649281499}
+  charges: {fileID: 649281499}
   upgradesButton: {fileID: 771215012}
   upgradesText: {fileID: 456030818}
   level: {fileID: 148722627}
@@ -11922,8 +11954,8 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 300, y: 100}
-  m_Spacing: {x: 79.5, y: 0}
+  m_CellSize: {x: 310, y: 100}
+  m_Spacing: {x: 64.6, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!1 &901194031
@@ -17429,7 +17461,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Shots
+  m_Text: Charges
 --- !u!222 &1278353863
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -18202,6 +18234,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: clouds
       objectReference: {fileID: 0}
+    - target: {fileID: 158326, guid: e339e1a672451004bb743c9048b0593a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 458326, guid: e339e1a672451004bb743c9048b0593a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -18325,6 +18361,10 @@ PrefabInstance:
     - target: {fileID: 19858326, guid: e339e1a672451004bb743c9048b0593a, type: 3}
       propertyPath: useRigidbodyForVelocity
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19858326, guid: e339e1a672451004bb743c9048b0593a, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19958326, guid: e339e1a672451004bb743c9048b0593a, type: 3}
       propertyPath: m_SortingLayerID
@@ -18634,7 +18674,7 @@ GameObject:
   - component: {fileID: 1928983479}
   - component: {fileID: 1928983478}
   m_Layer: 5
-  m_Name: button-shots
+  m_Name: button-charges
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

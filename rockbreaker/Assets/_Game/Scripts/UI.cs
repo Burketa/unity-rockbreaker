@@ -11,7 +11,7 @@ public class UI : MonoBehaviour
     //Upgrades
     public Text dmg;
     public Text speed;
-    public Text shotCount;
+    public Text charges;
 
     //Stats
     public Button upgradesButton;
@@ -45,14 +45,14 @@ public class UI : MonoBehaviour
     }
     public void UpShotCount()
     {
-        PlayerStats.UpShotCount();
+        PlayerStats.UpCharges();
     }
 
     public void UpdateAll()
     {
         UpdateDamage();
         UpdateSpeed();
-        UpdateShootCount();
+        UpdateCharges();
         UpdateUpgrades();
         UpdateLevel();
         UpdateLevelKills();
@@ -68,9 +68,9 @@ public class UI : MonoBehaviour
     {
         speed.text = $"{PlayerStats.fireRate.ToString("0.00")}s";
     }
-    public void UpdateShootCount()
+    public void UpdateCharges()
     {
-        shotCount.text = PlayerStats.shotCount.ToString();
+        charges.text = PlayerStats.charges.ToString();
     }
     public void UpdateUpgrades()
     {

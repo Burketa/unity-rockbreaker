@@ -31,6 +31,7 @@ public class Cannon : MonoBehaviour
 
     void Update()
     {
+        //Todo: Tirar o isDead daqui e colocar em um Player ?
         if (isDead)
         {
             Utils.RestartLevel();
@@ -81,9 +82,7 @@ public class Cannon : MonoBehaviour
             {
                 if (isValidEnemy(enemy))
                 {
-                    //AimAt(enemy);
-                    for (int shots = 1; shots <= PlayerStats.shotCount; shots++)
-                        DoShoot(shots);
+                    DoShoot();
                     break;
                 }
             }
@@ -101,7 +100,7 @@ public class Cannon : MonoBehaviour
             cannonBody.transform.up = enemy.transform.position - transform.position;
     }
 
-    private void DoShoot(int shots)
+    private void DoShoot()
     {
         _animation.Play("player-shoot-plant");
 

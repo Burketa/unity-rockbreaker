@@ -1,29 +1,42 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Projectile : MonoBehaviour
 {
     public bool destroyBulletsAfterKillingEnemy = false;
     private float speed = 1.0f;
+    private int charges = 1;
     private int dmg = 1;
     private Vector3 targetPosition;
     private Transform player;
     private ParticleSystem particles;
+    private RectTransform canvasRectTransform;
+    private Text chargesText;
+
 
     private void Awake()
     {
         player = GameObject.FindWithTag("Player").transform;
         particles = GameObject.Find("projetctile-particles").GetComponent<ParticleSystem>();
+        canvasRectTransform = transform.GetChild(0).transform.GetComponent<RectTransform>();
+        chargesText = transform.GetComponentInChildren<Text>();
 
         dmg = PlayerStats.dmg;
         speed = PlayerStats.bulletSpeed;
+        charges = PlayerStats.charges;
+
+        UpdateCharges();
     }
 
     void Update()
     {
-        dmg = PlayerStats.dmg;
+        if (charges <= 0)
+            Destroy(gameObject);
+
         FollowTarget();
-        transform.GetChild(0).transform.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, -transform.rotation.z);
+
+        canvasRectTransform.rotation = Quaternion.Euler(0, 0, -transform.rotation.z);
     }
 
     private void FollowTarget()
@@ -59,9 +72,19 @@ public class Projectile : MonoBehaviour
             particles.Play();
 
             Enemy enemy = col.GetComponent<Enemy>();
-            if (!enemy.isEnemyDead())
+
+            int totalDamage = dmg * charges;
+            int enemyHp = enemy.getEnemyHp();
+
+            if (totalDamage >= enemyHp)
             {
-                enemy.TakeDamage(dmg);
+                enemy.Die();
+                charges = (totalDamage - enemyHp) / dmg;
+                UpdateCharges();
+            }
+            else
+            {
+                enemy.TakeDamage(totalDamage);
                 Destroy(gameObject);
             }
         }
@@ -70,5 +93,10 @@ public class Projectile : MonoBehaviour
     public void SelfDestroy()
     {
         Destroy(gameObject);
+    }
+
+    private void UpdateCharges()
+    {
+        chargesText.text = charges.ToString();
     }
 }
